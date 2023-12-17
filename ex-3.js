@@ -8,26 +8,31 @@ class User{
 }
 
 class postlist{
-    constructor(posts){
+    constructor(){
         this.posts = [];
     }
     addPost(post){
-        this.post.push(post);
+        this.post.push({
+            id: this.posts.length + 1,
+            title: post.title,
+            content: post.content,
+            comment: post.comments,
+        });
     }
     sharedPost(postTitle){
-        console.log(`You've shared post ${postTitle}`)
+        console.log(`You've shared post ${this.posts[postTitle-1].title} to your friend.`)
     }
 }
 
 class Post{
-    constructor(id, title, content, comment){
+    constructor(id, title, content, comments){
         this.id = id;
         this.title = title;
         this.content = content;
-        this.comment = [];
+        this.comments = [];
     }
     addComment(textComment){
-        this.comment.push(textComment);
+        this.comments.push(textComment);
     }
 }
 
@@ -38,8 +43,8 @@ class Comment{
         this.createBy = createBy;
         this.like = 0;
     }
-    addLike(like){
-        this.like += like;
+    addLike(){
+        this.like = this.like + 1;
     }
 }
 
@@ -67,12 +72,11 @@ class FacebookGroup{
         this.name = name;
     }
 }
-
 class Notification{
     constructor(id){
         this.id = id;
     }
-    send(outPut){
-        console.log(`Notification: ${Comment.this.createBy} has just commented on this post—${Post.this.title}`)
+    send(comment, post){
+        console.log(`Notification: ${comment.createBy.name} has just commented on this post—${post.title}`)
     }
 }
